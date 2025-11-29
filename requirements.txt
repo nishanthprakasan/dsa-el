@@ -1,0 +1,12 @@
+# Core
+numpy>=1.24
+boto3>=1.26    # for S3 blob store (optional)
+redis>=4.5     # optional if using Redis backend
+pytest>=7.0
+python-dotenv>=1.0
+
+# Optional (recommended for real embeddings)
+sentence-transformers>=2.2.2
+
+# Optional faster hashing
+blake3>=0.3.2
