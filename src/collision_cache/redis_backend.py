@@ -1,9 +1,12 @@
 # redis_backend.py
 import json
 import redis
-from typing import Optional, List
-from .core import CacheEntry
-from .utils import canonicalize_input
+import numpy as np
+from typing import Optional, List, TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from .core import CacheEntry
+
 
 class RedisBackend:
     """
@@ -34,3 +37,27 @@ class RedisBackend:
 
     def get_bucket_size(self, semhash: str) -> int:
         return len(self.load_bucket(semhash))
+    
+    def serialize_entry(self, entry: CacheEntry) -> dict:
+        return {
+            "input_sig": entry.input_sig,
+            "output_fp": entry.output_fp,
+            "embedding": entry.embedding.tolist(),  # numpy -> list
+            "payload_ptr": entry.payload_ptr,
+            "model_version": entry.model_version,
+            "created_at": entry.created_at,
+            "confidence": entry.confidence,
+            "usage_count": entry.usage_count,
+        }
+
+def deserialize_entry(self, data: dict) -> CacheEntry:
+    return CacheEntry(
+        input_sig=data["input_sig"],
+        output_fp=data["output_fp"],
+        embedding=np.array(data["embedding"], dtype=np.float32),
+        payload_ptr=data["payload_ptr"],
+        model_version=data.get("model_version", "1.0"),
+        confidence=data.get("confidence"),
+        usage_count=data.get("usage_count", 0),
+    )
+

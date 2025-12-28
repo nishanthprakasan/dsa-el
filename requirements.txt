@@ -10,3 +10,4 @@ sentence-transformers>=2.2.2
 
 # Optional faster hashing
 blake3>=0.3.2
+upstash-redis>=1.0.0
