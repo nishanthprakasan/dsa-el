@@ -99,7 +99,7 @@ def main():
             print("Result:", result)
 
         else:
-            print("CACHE MISS")
+            print("CACHE MISS ")
             print("Reason:", info.get("reason"))
 
             # ---- STORE QUERY ONLY (NO ANSWER) ----
