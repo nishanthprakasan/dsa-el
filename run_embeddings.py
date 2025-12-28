@@ -1,7 +1,6 @@
 import os, time
 from dotenv import load_dotenv
 
-# load environment variables
 load_dotenv()
 
 print("ENV:", os.getenv("ENV", "not-set"))
@@ -12,7 +11,6 @@ sim_threshold = float(os.getenv("CACHE_SIM_THRESHOLD", "0.92"))
 print(f"Model to load: {MODEL_NAME}")
 print(f"Embedding dim: {emb_dim}, similarity threshold: {sim_threshold}")
 
-# import cache system
 from collision_cache.core import CollisionAwareSemanticCache
 from collision_cache.embedding_providers import sentence_transformers_provider
 
@@ -42,7 +40,6 @@ cache.store(prompt_store, output_store, emb_store, payload_ptr="inline://paris")
 
 print("Store complete. Cache stats after store:", cache.stats_snapshot())
 
-# lookup paraphrase
 query = "Tell me the capital city of France."
 print("\nComputing embedding for query...")
 emb_q = emb_fn(query)

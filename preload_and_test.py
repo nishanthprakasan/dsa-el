@@ -56,18 +56,29 @@ def main():
 
     print("Preload complete. Cache stats:", cache.stats_snapshot())
 
-    # --- TEST QUERIES: edit this list as you like ---
+    # --- TEST QUERIES---
     test_queries = [
-        "Tell me the capital city of France.",
-        "What is the capital of Italy?",
-        "Who is the author of Harry Potter?",
-        "What kind of object is the Sun?",
-        "How fast does light travel?",
-        "Name the highest mountain in the world.",
-        "What is machine learning?",
-        "How many legs does a spider have?",   # unrelated
-        "How to bake a chocolate cake?"         # unrelated
-    ]
+    # --- Expected hits (paraphrases of preload) ---
+    "Name the capital city of Italy.",
+    "Who is credited with discovering penicillin?",
+    "Explain in one line what Python programming is.",
+    "Which animal is the national animal of India?",
+    "What's 2 plus 2?",
+    "Who wrote Pride & Prejudice?",
+    "What's the chemical formula for water?",
+    "What does 'photosynthesis' mean?",
+    "How can I reverse a list in Python?",
+    
+    # --- Expected misses (different intent / unrelated) ---
+    "How to replace a broken screen on a phone?",
+    "What are the lyrics to a popular song?",
+    "Give me a recipe for banana bread.",
+    
+    # --- borderline / check thresholds (may be hit if threshold low) ---
+    "What is the boiling temperature of H2O at sea level?",
+    "Which mountain is the highest above sea level?"
+]
+
 
     print("\nRunning tests on", len(test_queries), "queries...\n")
     for q in test_queries:

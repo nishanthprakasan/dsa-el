@@ -4,7 +4,6 @@ import numpy as np
 from dataclasses import dataclass, field
 from typing import Callable, Dict, List, Optional, Tuple
 
-# utility functions from utils.py
 from .utils import canonicalize_input, input_signature, output_fingerprint
 
 @dataclass
